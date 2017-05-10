@@ -1,0 +1,52 @@
+﻿<div class="container question" style="margin-top: 60px;">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        <div class="sub-title lead3">
+            Quiz Type - @if (ViewBag.quiz_type == 1){
+                @: quiz by verb 
+                }
+            else {
+                @: quiz by meaning 
+                }  <br>
+            Difficulty Level - @ViewBag.verbs_count phrasal verbs <br>
+            Number of Quiz - @ViewBag.quiz_count
+            <br /> @ViewBag.tmp123;
+        </div>
+        <hr>
+      @using (Html.BeginForm("Result", "Quiz", FormMethod.Post))
+      {
+        <input type="hidden" name="quiz_count" value="@ViewBag.quiz_count">
+        <input type="hidden" name="verbs_count" value="@ViewBag.verbs_count">
+        <input type="hidden" name="quiz_type" value="@ViewBag.quiz_type">
+        <input type="hidden" name="verbs_ids" value="@ViewBag.verbs_ids">
+
+          for (var i=0; i< ViewBag.quiz_count; i++){
+       <div>
+        @ViewBag.quizs[i].question ? <br>
+           <input type="hidden" name="question_@i" value="@ViewBag.quizs[i].question">
+           <input type="hidden" name="question_id_@i" value="@ViewBag.quizs[i].question_id">
+
+           <input type="radio" value="@ViewBag.quizs[i].answer1_id" name='radio_@i' />
+           &nbsp;@ViewBag.quizs[i].answer1<br>
+           <input type="radio" value="@ViewBag.quizs[i].answer2_id" name='radio_@i' />
+           &nbsp;@ViewBag.quizs[i].answer2<br>
+           <input type="radio" value="@ViewBag.quizs[i].answer3_id" name='radio_@i' />
+           &nbsp;@ViewBag.quizs[i].answer3<br>
+           <input type="radio" value="@ViewBag.quizs[i].answer4_id" name='radio_@i' />
+           &nbsp;@ViewBag.quizs[i].answer4<br>
+        <br />
+       
+       </div>
+          }
+        <input type="submit" name="submit" id="submit" value="Check the answer" class="btn wow tada btn-embossed btn-primary pull-center"><br /><br />
+      }
+
+    </div>
+
+    <div class="col-md-3"></div>
+</div>
+
+
+
+

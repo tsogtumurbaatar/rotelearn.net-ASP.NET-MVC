@@ -1,0 +1,28 @@
+﻿<div class="container question" style="margin-top: 60px;">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        <div class="sub-title lead3">
+            Quiz Type - @if (ViewBag.quiz_type == 1)
+            {
+                @: quiz by verb
+                }
+            else
+            {
+                @: quiz by meaning
+                }  <br>
+            Difficulty Level - @ViewBag.verbs_count phrasal verbs <br>
+            Number of Quiz - @ViewBag.quiz_count
+        </div>
+        <hr>
+        <div>
+        @Html.Raw(@ViewBag.answer)
+      
+
+                
+        </div>
+        @Html.ActionLink("Start Quiz", "Index", "Home")
+        </div>
+
+    <div class="col-md-3"></div>
+</div>

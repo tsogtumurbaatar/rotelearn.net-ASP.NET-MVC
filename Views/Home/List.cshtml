@@ -1,0 +1,69 @@
+﻿@model PagedList.IPagedList<rotelearn.Models.verb>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div id="contact" class="content-section-a">
+    <div class="container">
+        <div class="row">
+
+            <div class="container question" style="margin-top: 60px;">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    These 200 common phrasal verbs are taken from <b><a style="color:Teal" href="https://www.englishclub.com/vocabulary/phrasal-verbs-list.htm">www.englishclub.com</a></b>, you can visit this site and get full information of phrasal verbs. And all the phrasal verb credits are belong to <b><a style="color:Teal" href="https://www.englishclub.com/">www.englishclub.com</a></b><br> <br>
+
+                    @using (Html.BeginForm("List", "Home", FormMethod.Get))
+                    {
+                    //    <input type="hidden" name="_token" value="">
+                        <div class="row">
+                            <div class="col-xs-10 form-group">
+                                <div class="input-group">
+                                    @*<input type="text" class="form-control" name="searchString" id="InputName" placeholder="Search"> <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>*@
+                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })<span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-2 form-group">
+                                <input type="submit" name="submit" id="submit" value="Search" class="btn wow tada btn-embossed btn-primary pull-right">
+                            </div>
+                        </div>
+                    }
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Verb</th>
+                                <th>Meaning</th>
+                                <th>Example sentence</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.verb1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.verb_desc)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.verb_example)
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                        <br />
+                        @Html.PagedListPager(Model, page => Url.Action("List",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
+                    </div>
+
+                </div>
+
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿<!-- FlatFy Theme - Andrea Galanti /-->
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html>
+ <!--<![endif]-->
+<head>
+    @RenderPage("~/Views/Shared/_Head.cshtml")
+</head>
+<body id="home">
+
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    @RenderPage("~/Views/Shared/_Header.cshtml")
+
+    @RenderBody()
+    
+    @RenderPage("~/Views/Shared/_Footer.cshtml")
+   
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/customjavascripts")
+    @RenderSection("scripts", required: false)
+    
+    
+                <script type="text/javascript">
+                    var slider = document.getElementById('slider');
+
+                    noUiSlider.create(slider, {
+                        start: [0, 25],
+                        connect: true,
+                        tooltips: true,
+                        step: 5,
+                        margin: 10,
+                        range: {
+                            'min': 0,
+                            'max': 200
+                        },
+                        pips: {
+                            mode: 'range',
+                            density: 10
+                        },
+                        format: {
+                            to: function (value) {
+                                return value;
+                            },
+                            from: function (value) {
+                                return value.replace(',-', '');
+                            }
+                        }
+                    });
+
+                    slider.noUiSlider.on('change', function () {
+                        var jvar = slider.noUiSlider.get();
+                        $("#jsval1").val(jvar[0]);
+                        $("#jsval2").val(jvar[1]);
+                    });
+
+                </script>
+       
+    
+</body>
+</html>
